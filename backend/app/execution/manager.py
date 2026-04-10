@@ -32,14 +32,14 @@ class ExecutionManager:
             logger.critical("FORBIDDEN: Real trading attempted without explicit confirmation.")
             return None
 
-        # KIS 주문 API (v1/주식주문-현금)
-        # [공식 문서 확인포인트]
-        # 실전: https://apiportal.koreainvestment.com/apis/domestic-stock/stock-order (TTTC0802U/TTTC0801U)
-        # 모의: https://apiportal.koreainvestment.com/apis/domestic-stock/stock-order-virtual (VTTC0802U/VTTC0801U)
+        # KIS 주문 API (v2 신규 TR ID 적용)
+        # [공식 문서 확인포인트] 
+        # 실전: https://apiportal.koreainvestment.com/apis/domestic-stock/stock-order (TTTC0012U / TTTC0001U)
+        # 모의: https://apiportal.koreainvestment.com/apis/domestic-stock/stock-order-virtual (VTTC0012U / VTTC0001U)
         path = "/uapi/domestic-stock/v1/trading/order-cash"
-        tr_id = "TTTC0802U" if settings.IS_REAL_TRADING else "VTTC0802U" # 매수
+        tr_id = "TTTC0012U" if settings.IS_REAL_TRADING else "VTTC0012U" # 매수 (신규)
         if order_type == "SELL":
-            tr_id = "TTTC0801U" if settings.IS_REAL_TRADING else "VTTC0801U" # 매도
+            tr_id = "TTTC0001U" if settings.IS_REAL_TRADING else "VTTC0001U" # 매도 (신규)
 
         payload = {
             "CANO": settings.KIS_ACCOUNT_NO[:8],
