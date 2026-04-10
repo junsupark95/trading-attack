@@ -1,14 +1,14 @@
-# Frontend Dockerfile
 FROM node:18-slim
 
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install --legacy-peer-deps
+RUN npm install
 
 COPY . .
+RUN npm run build
 
-# React 기본 포트
+RUN npm install -g serve
+
 EXPOSE 3000
-
-CMD ["npm", "start"]
+CMD ["serve", "-s", "dist", "-l", "3000"]

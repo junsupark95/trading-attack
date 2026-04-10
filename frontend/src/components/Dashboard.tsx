@@ -11,7 +11,7 @@ import {
   Wallet
 } from 'lucide-react';
 
-const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 const Dashboard: React.FC = () => {
     const [status, setStatus] = useState<any>(null);
