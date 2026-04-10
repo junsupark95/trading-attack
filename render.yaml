@@ -6,7 +6,7 @@ services:
     region: singapore
     plan: free
     dockerContext: ./backend
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: ./backend/Dockerfile
     envVars:
       - key: IS_REAL_TRADING
         value: "false"
@@ -34,7 +34,7 @@ services:
     region: singapore
     plan: free
     dockerContext: ./frontend
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: ./frontend/Dockerfile
     envVars:
       - key: REACT_APP_API_URL
         fromService:
