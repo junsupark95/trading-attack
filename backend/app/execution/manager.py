@@ -33,6 +33,9 @@ class ExecutionManager:
             return None
 
         # KIS 주문 API (v1/주식주문-현금)
+        # [공식 문서 확인포인트]
+        # 실전: https://apiportal.koreainvestment.com/apis/domestic-stock/stock-order (TTTC0802U/TTTC0801U)
+        # 모의: https://apiportal.koreainvestment.com/apis/domestic-stock/stock-order-virtual (VTTC0802U/VTTC0801U)
         path = "/uapi/domestic-stock/v1/trading/order-cash"
         tr_id = "TTTC0802U" if settings.IS_REAL_TRADING else "VTTC0802U" # 매수
         if order_type == "SELL":
