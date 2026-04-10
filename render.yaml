@@ -1,0 +1,43 @@
+services:
+  # 1. Python Backend Service
+  - type: web
+    name: kaom-backend
+    env: docker
+    region: singapore
+    plan: free
+    dockerContext: ./backend
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: IS_REAL_TRADING
+        value: "false"
+      - key: PROD_KIS_APP_KEY
+        sync: false
+      - key: PROD_KIS_APP_SECRET
+        sync: false
+      - key: PROD_KIS_ACCOUNT_NO
+        sync: false
+      - key: PAPER_KIS_APP_KEY
+        sync: false
+      - key: PAPER_KIS_APP_SECRET
+        sync: false
+      - key: PAPER_KIS_ACCOUNT_NO
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+
+  # 2. React Frontend Service
+  - type: web
+    name: kaom-frontend
+    env: docker
+    region: singapore
+    plan: free
+    dockerContext: ./frontend
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: REACT_APP_API_URL
+        fromService:
+          name: kaom-backend
+          type: web
+          property: host
