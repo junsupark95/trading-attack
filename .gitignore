@@ -152,8 +152,8 @@ yarn-error.log*
 # ===== Lock files =====
 *.lock
 
-# ===== KIS (민감 정보) =====
-KIS/
+# ===== KIS (민감 정보 - 프로젝트 루트의 KIS 폴더만 무시) =====
+/KIS/
 .master/
 .kis_token*.json
 
